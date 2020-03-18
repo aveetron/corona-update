@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <style>
+        .title{
+            text-align: center;
+        }
+        .box{
+            border: 1px solid gray;
+            height: 10em;
+            padding: 4em;
+            margin-left: 20px;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <h1 class="display-4 text-center">করনা সমাচার </h1>
+    </div><br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm box">
+                <h4 class="text-warning">করনা আক্রান্ত :  {{cases}} </h4>
+            </div>
+            <div class="col-sm box">
+                <h4 class="text-danger">মৃত্যু- {{deaths}}</h4> 
+            </div>
+            <div class="col-sm box">
+                <h4 class="text-primary">সুস্থ হয়েছেন - {{recovered}}</h4> 
+            </div>
+        </div>
+    </div><br><br>
+    <div class="container">
+            <h1 class="title text-success">দেশ ভিত্তিক সাম্প্রতিক ডেটা </h1>
+          <table id="example" class="display" style="max-width:100% ">
+              <thead>
+                  <tr>
+                      <th>দেশ</th>
+                      <th>আক্রান্ত</th>
+                      <th>আজকে আক্রান্ত</th>
+                      <th>মৃত্যু</th>
+                      <th>আজকে মৃত্যু</th>
+                      <th>সুস্থ</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for val in countryWiseSummary %}
+                    <tr>
+                      <td>{{val.country}}</td>
+                      <td>{{val.cases}}</td>
+                      <td>{{val.todayCases}}</td>
+                      <td>{{val.deaths}}</td>
+                      <td>{{val.todayDeaths}}</td>
+                      <td>{{val.recovered}}</td>
+                    </tr>
+                  {% endfor %}
+              </tfoot>
+          </table>
+        
+    </div>
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+    </script>
+</body>
+</html>
